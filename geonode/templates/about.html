@@ -1,20 +1,33 @@
 {% extends "geonode_base.html" %}
 
 {% load i18n %}
-{% block title %} {% trans "About GeoNode" %} — {{ block.super }} {% endblock %}
+{% load staticfiles %}
+{% block title %} {% trans "About" %} — {{ block.super }} {% endblock %}
 
 {% block body_outer %}
 <div class="page-header">
-  <h2>{% trans "About GeoNode" %}</h2>
+  <h2>{% trans "About" %}</h2>
 </div>
 <p>
-　　{% trans "GeoNode is a geospatial content management system, a platform for the management and publication of geospatial data. It brings together mature and stable open-source software projects under a consistent and easy-to-use interface allowing non-specialized users to share data and create interactive maps." %}
+{% blocktrans %}
+The Chiang Mai University  School of Public Policy (CMU - SPP) has been active on a number of issues that have local and regional policy implications. SPP produces and promotes policy initiatives that build effective and accountable organizations supporting of cities and communities that are inclusive, safe, resilient, and sustainable. SPP is particularly mindful of policy coherence, how one strategy impacts aspects of others. SPP therefore takes a multi-sector-collaborative approach to formulating sound, contextually specific, policies that acknowledge how public problems are ever-changing; therefore, it is imperative that up-to-date policy solutions involving the government, the market, and civil society are implemented.
+{% endblocktrans %}
 </p>
 <p>
-　　{% trans "Data management tools built into GeoNode allow for integrated creation of data, metadata, and map visualizations. Each dataset in the system can be shared publicly or restricted to allow access to only specific users. Social features like user profiles and commenting and rating systems allow for the development of communities around each platform to facilitate the use, management, and quality control of the data the GeoNode instance contains." %}
+{% blocktrans %}
+Many of the issues that SPP investigates have strong geographic components; with issues, communities and policies converging on the spatial plane. It is geographic location that in many cases brings these components together and explain the complexity that might otherwise not be understood. Visualizing and analyzing these issues and solutions together, in a geographic space, allows for the understanding of how truly intertwined and complex some of these issues are, and how some of their solutions could be developed.
+{% endblocktrans %}
 </p>
 <p>
-　　{% trans "It is also designed to be a flexible platform that software developers can extend, modify or integrate against to meet requirements in their own applications." %}
+{% blocktrans %}
+The School of Public Policy is using the <a href="http://geonode.org/" target="_blank">GeoNode</a> webGIS platform to share geographical information - data and maps - to a variety of stakeholders from the communities, organizations and government agencies that it works with to tackle some of the most pressing issues in society.
+{% endblocktrans %}
 </p>
-
+<img class='items-list thumb' style="border: 1px solid #ccc;margin-top:10px;width: inherit;" src='{% static 'geonode/img/IMG_20190627_104257.jpg' %}' alt="IMG_20190627_104257"/>
+<br>
+<img class='items-list thumb' style="border: 1px solid #ccc;margin-top:10px;width: inherit;" src='{% static 'geonode/img/IMG_20190627_110314.jpg' %}' alt="IMG_20190627_110314"/>
+<br>
+<img class='items-list thumb' style="border: 1px solid #ccc;margin-top:10px;width: inherit;" src='{% static 'geonode/img/IMG_ORIG_TRANS_STRUCT.jpg' %}' alt="{% trans "The original transport system structure"}"/>
+<br>
+<img class='items-list thumb' style="border: 1px solid #ccc;margin-top:10px;width: inherit;" src='{% static 'geonode/img/Picture5.jpg' %}' alt="Picture5"/>
 {% endblock %}
