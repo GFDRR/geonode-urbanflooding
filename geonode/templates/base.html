@@ -67,6 +67,13 @@
           color: {{ custom_theme.body_text_color }};
           {% endif %}
         }
+
+        .home #partners {
+          background: {{ custom_theme.body_color }};
+          padding: 2em 0;
+          text-align: center;
+        }
+
         {% endif %}
 
         {% if custom_theme.navbar_color %}
@@ -149,7 +156,10 @@
 
         {% if custom_theme.jumbotron_text_color %}
         .home .jumbotron p {
-          color: {{ custom_theme.jumbotron_text_color }}
+          color: {{ custom_theme.jumbotron_text_color }};
+          font-weight: normal;
+          font-size: xx-large;
+          font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
         }
         {% endif %}
 
@@ -204,6 +214,7 @@
 
         {% if custom_theme.footer_text_color or custom_theme.footer_href_color %}
         footer {
+          background-color: {{ custom_theme.copyright_color }};
           color: {{ custom_theme.footer_text_color }};
           padding: 1.5em;
         }
