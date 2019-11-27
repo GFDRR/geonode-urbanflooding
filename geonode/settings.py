@@ -1751,8 +1751,11 @@ CELERY_SEND_TASK_SENT_EVENT = True
 # Disabled by default and I like it, because we use Sentry for this.
 # CELERY_SEND_TASK_ERROR_EMAILS = False
 
-# AWS S3 Settings
+# ########################################################################### #
+# MEDIA / STATICS STORAGES SETTINGS
+# ########################################################################### #
 
+# AWS S3 Settings
 S3_STATIC_ENABLED = ast.literal_eval(os.environ.get('S3_STATIC_ENABLED', 'False'))
 S3_MEDIA_ENABLED = ast.literal_eval(os.environ.get('S3_MEDIA_ENABLED', 'False'))
 
@@ -1765,7 +1768,6 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
 AWS_S3_BUCKET_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 AWS_QUERYSTRING_AUTH = False
-
 if S3_STATIC_ENABLED:
     STATICFILES_LOCATION = 'static'
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -1776,6 +1778,25 @@ if S3_MEDIA_ENABLED:
     MEDIAFILES_LOCATION = 'media'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     MEDIA_URL = "https://%s/%s/" % (AWS_S3_BUCKET_DOMAIN, MEDIAFILES_LOCATION)
+
+# Cache Bustin Settings
+CACHE_BUSTING_STATIC_ENABLED = ast.literal_eval(os.environ.get('CACHE_BUSTING_STATIC_ENABLED', 'False'))
+CACHE_BUSTING_MEDIA_ENABLED = ast.literal_eval(os.environ.get('CACHE_BUSTING_MEDIA_ENABLED', 'False'))
+
+if not S3_STATIC_ENABLED and not S3_MEDIA_ENABLED:
+    if CACHE_BUSTING_STATIC_ENABLED or CACHE_BUSTING_MEDIA_ENABLED:
+        from django.contrib.staticfiles import storage
+        storage.ManifestStaticFilesStorage.manifest_strict = False
+    if CACHE_BUSTING_STATIC_ENABLED:
+        STATICFILES_LOCATION = 'static'
+        STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+    if CACHE_BUSTING_MEDIA_ENABLED:
+        MEDIAFILES_LOCATION = 'media'
+        DEFAULT_FILE_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+# ########################################################################### #
+# SECURITY SETTINGS
+# ########################################################################### #
 
 # Require users to authenticate before using Geonode
 if LOCKDOWN_GEONODE:
